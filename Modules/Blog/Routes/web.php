@@ -11,6 +11,7 @@
 |
 */
 
-Route::prefix('blog')->group(function() {
-    Route::get('/', 'BlogController@index');
+Route::group(['prefix' => 'panel/blog', 'as' => 'panel.blog.', 'middleware' => ['auth']], function () {
+    Route::get('/', [Modules\Blog\Http\Controllers\BlogController::class, 'index'])->name('index');
+    Route::post('/add', [Modules\Blog\Http\Controllers\BlogController::class, 'addBlogPost'])->name('add-post');
 });
