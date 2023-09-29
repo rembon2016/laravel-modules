@@ -11,6 +11,6 @@
 |
 */
 
-Route::group(['prefix' => 'usr', 'as' => 'usr.'], function () {
-    Route::get('/', [Modules\Usr\Http\Controllers\UsrController::class, 'index'])->name('index');
+Route::prefix('panel')->group(function() {
+    Route::get('/', 'PanelController@index');
 });

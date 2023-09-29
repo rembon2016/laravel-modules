@@ -2,78 +2,41 @@
 
 namespace Modules\Usr\Http\Controllers;
 
-use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
+use Modules\Usr\Http\Requests\LoginRequest;
+use Illuminate\Contracts\Support\Renderable;
 
 class UsrController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * 
      * @return Renderable
      */
-    public function index()
+    public function index(): Renderable
     {
-        return view('usr::index');
+        return view('usr::content.index');
     }
 
     /**
-     * Show the form for creating a new resource.
-     * @return Renderable
+     * Authenticate the user credentials.
+     * 
+     * @param \Modules\Usr\Http\Requests\LoginRequest $request
+     * @return RedirectResponse
      */
-    public function create()
+    public function authenticate(LoginRequest $request): RedirectResponse
     {
-        return view('usr::create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Renderable
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function show($id)
-    {
-        return view('usr::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function edit($id)
-    {
-        return view('usr::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Renderable
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Renderable
-     */
-    public function destroy($id)
-    {
-        //
+        if (Auth::attempt($request->validated())) {
+            $request->session()->regenerate();
+ 
+            return redirect();
+        }
+ 
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
     }
 }
