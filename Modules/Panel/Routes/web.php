@@ -11,6 +11,6 @@
 |
 */
 
-Route::prefix('panel')->group(function() {
-    Route::get('/', 'PanelController@index');
+Route::group(['prefix' => 'panel', 'as' => 'panel.', 'middleware' => ['auth']], function () {
+    Route::get('/', [Modules\Panel\Http\Controllers\PanelController::class, 'index'])->name('index');
 });

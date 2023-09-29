@@ -32,11 +32,28 @@ class UsrController extends Controller
         if (Auth::attempt($request->validated())) {
             $request->session()->regenerate();
  
-            return redirect();
+            return redirect()->route('panel.index');
         }
  
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ])->onlyInput('email');
+    }
+
+    /**
+     * Destroy the authenticated user sessions.
+     * 
+     * @param \Illuminate\Http\Request $request
+     * @return RedirectResponse
+     */
+    public function logout(Request $request): RedirectResponse
+    {
+        Auth::logout();
+ 
+        $request->session()->invalidate();
+    
+        $request->session()->regenerateToken();
+    
+        return redirect()->route('usr.index');
     }
 }

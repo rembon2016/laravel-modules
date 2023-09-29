@@ -1,9 +1,10 @@
 @extends('panel::layouts.master')
 
 @section('content')
-    <h1>Hello World</h1>
-
-    <p>
-        This view is loaded from module: {!! config('panel.name') !!}
-    </p>
+    <h1>Welcome {{ auth()->user()->name }} to Dashboard Panel</h1>
+    <br>
+    <form action="{{ route('usr.logout') }}" method="POST">
+        @csrf
+        <button type="submit">Logout</button>
+    </form>
 @endsection

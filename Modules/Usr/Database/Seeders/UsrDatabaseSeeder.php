@@ -16,6 +16,6 @@ class UsrDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        // $this->call("OthersTableSeeder");
+        $this->call(SeedFakeUserTableSeeder::class);
     }
 }

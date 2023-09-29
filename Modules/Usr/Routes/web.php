@@ -12,5 +12,11 @@
 */
 
 Route::group(['prefix' => 'usr', 'as' => 'usr.'], function () {
-    Route::get('/', [Modules\Usr\Http\Controllers\UsrController::class, 'index'])->name('index');
+    
+    Route::middleware(['guest'])->group(function () {
+        Route::get('/', [Modules\Usr\Http\Controllers\UsrController::class, 'index'])->name('index');
+        Route::post('/authenticate', [Modules\Usr\Http\Controllers\UsrController::class, 'authenticate'])->name('authenticate');
+    });
+
+    Route::post('/logout', [Modules\Usr\Http\Controllers\UsrController::class, 'logout'])->middleware(['auth'])->name('logout');
 });
