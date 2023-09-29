@@ -15,7 +15,7 @@ class PanelController extends Controller
      */
     public function index(): Renderable
     {
-        return view('panel::index');
+        return view('panel::content.index');
     }
     
 }
