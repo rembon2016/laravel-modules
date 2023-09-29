@@ -2,7 +2,12 @@
 > Laravel Modules adalah paket Laravel yang dibuat untuk mengelola aplikasi Laravel besar Anda menggunakan modul. Modul seperti paket Laravel, ia memiliki beberapa tampilan, pengontrol, atau model. Paket ini didukung dan diuji di Laravel 9.
 
 ## Installation and Setup
-> Untuk menginstal melalui Composer, dengan menjalankan perintah berikut:
+> Pertama Install Fresh Laravel Project atau Pergi Ke Laravel Proyek Yang Sudah Ada
+```php
+composer create-project laravel/laravel nama_project
+```
+
+> Selanjutnya Pergi Ke Laravel Project, Untuk menginstal melalui Composer, dengan menjalankan perintah berikut:
 ```bash
 composer require nwidart/laravel-modules
 ```
