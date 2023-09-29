@@ -79,6 +79,30 @@ php artisan module:seed Blog
 ```
 - `Blog` adalah Nama Modul Yang Sudah Dibuat
 
+## Try Application
+> Untuk Mencoba Aplikasinya, Silahkan Ketikan Perintah Berikut:
+```bash
+https://github.com/rembon2016/laravel-modules.git
+```
+
+> Jalankan Migration dan Seeder Pada Modul Usr, Untuk Membuat Akun Dummy:
+```bash
+php artisan migrate && php artisan module:seed Usr
+```
+> Akan Menghasilkan Kredensial Berikut:
+- Email : {cek_kolom_email_pada_table}
+- Password : password
+
+> Silahkan Menuju Kedalam Tautan Berikut:
+```bash
+127.0.0.1/usr
+```
+
+> Database Environment
+- Database Connection: PostgreSQL
+- Host: 12.0.0.1 (Local)
+- Port: 5432
+
 ## Laravel Modules Directive Links
 - [Requirements Docs](https://docs.laravelmodules.com/v10/requirements)
 - [Installation and Setup Docs](https://docs.laravelmodules.com/v10/installation-and-setup)
